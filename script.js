@@ -3,6 +3,8 @@ import * as wordleAI from './wordleAI.js';
 
 var remainingWords = WORDS.slice();
 
+console.log(LONG_WORDS.length);
+
 const NUMBER_OF_GUESSES = 6;
 let guessesRemaining = NUMBER_OF_GUESSES;
 let currentGuess = [];
@@ -230,6 +232,7 @@ const animateCSS = (element, animation, prefix = 'animate__') =>
 });
 
 document.addEventListener("keyup", (e) => {
+
 
     let currentTime = new Date().getTime();
     var timeElapsed = currentTime-startTime;
