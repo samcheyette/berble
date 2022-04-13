@@ -9,7 +9,7 @@ let currentGuess = [];
 let nextLetter = 0;
 let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)];
 let startTime = new Date().getTime();
-let timeLimit = 90;
+let timeLimit = 120;
 
 //console.log(rightGuessString)
 
