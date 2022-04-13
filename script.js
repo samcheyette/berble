@@ -3,7 +3,7 @@ import * as wordleAI from './wordleAI.js';
 
 var remainingWords = WORDS.slice();
 
-console.log(LONG_WORDS.length);
+//console.log(LONG_WORDS.length);
 
 const NUMBER_OF_GUESSES = 6;
 let guessesRemaining = NUMBER_OF_GUESSES;
@@ -141,7 +141,7 @@ function checkGuess () {
     }
 
     remainingWords = wordleAI.getRemainingWords(rightGuessString, remainingWords.slice(), guessString);
-    //console.log(remainingWords);
+    console.log(remainingWords.length);
     for (let i = 0; i < 5; i++) {
         let letterColor = ''
         let box = row.children[i]
@@ -252,7 +252,7 @@ document.addEventListener("keyup", (e) => {
 
     if (pressedKey == "Tab") {
         let AIGuess = wordleAI.makeGuess(LONG_WORDS,remainingWords,
-                    Math.min(2500,WORDS.length),80);
+                    Math.min(3000,WORDS.length),90);
         for (const letter of AIGuess) {
             insertLetter(letter);
         }
