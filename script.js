@@ -11,6 +11,7 @@ let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)];
 let startTime = new Date().getTime();
 let timeLimit = 120;
 let enforceTime = false;
+var gameOver = false;
 //console.log(rightGuessString)
 
 
@@ -33,8 +34,6 @@ function timer(minutes, seconds) {
 
 
 function clock(minutes, seconds) {
-    console.log(minutes, seconds);
-
         if (seconds < 10) {
             document.getElementById("timer").innerHTML = minutes + ":0" + seconds;
         } else {
@@ -55,13 +54,17 @@ function timer_wrapper() {
 
             timer(minutes, seconds);
         } else {
+            gameOver = true;
             clearInterval(timer_wrapper);
 
         }
     } else {
         var minutes = Math.floor(secondsElapsed / 60);
         var seconds = Math.floor(secondsElapsed % 60);
-        clock(minutes, seconds);
+        if (!gameOver) {
+            clock(minutes, seconds);
+
+        }
     }
 
 
@@ -173,6 +176,7 @@ function checkGuess () {
 
     if (guessString === rightGuessString) {
         clearInterval(timer_wrapper);
+        gameOver=true;
         toastr.success("You guessed right! Game over!")
         guessesRemaining = 0
         return
@@ -183,7 +187,7 @@ function checkGuess () {
 
         if (guessesRemaining === 0) {
             clearInterval(timer_wrapper);
-            
+            gameOver=true;
             toastr.error("You've run out of guesses! Game over!")
             toastr.info(`The right word was: "${rightGuessString}"`)
         }
@@ -280,7 +284,6 @@ document.getElementById("keyboard-cont").addEventListener("click", (e) => {
     }
     let key = target.textContent
 
-    console.log(key);
     if (key === "Del") {
         key = "Backspace";
     } 
