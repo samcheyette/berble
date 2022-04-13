@@ -30,30 +30,45 @@ function timer(minutes, seconds) {
 
 };
 
+
+
+function clock(minutes, seconds) {
+
+        if (seconds < 10) {
+            document.getElementById("timer").innerHTML = minutes + ":0" + seconds;
+        } else {
+            document.getElementById("timer").innerHTML = minutes + ":" + seconds;
+
+        }
+};
+
 function timer_wrapper() {
     let currentTime = new Date().getTime();
     var timeElapsed = currentTime-startTime;
     var secondsElapsed = timeElapsed / 1000;
-    var secondsRemain = timeLimit - secondsElapsed;
-
-    if ((secondsRemain >= 0) & (guessesRemaining > 0)) {
+    if (enforceTime) {
+        var secondsRemain = timeLimit - secondsElapsed;
         var minutes = Math.floor(secondsRemain / 60);
         var seconds = Math.floor(secondsRemain % 60);
-        timer(minutes, seconds);
-    } else {
-        clearInterval(timer_wrapper);
+        if ((secondsRemain >= 0) & (guessesRemaining > 0)) {
 
+            timer(minutes, seconds);
+        } else {
+            clearInterval(timer_wrapper);
+
+        }
+    } else {
+        clock(secondsElapsed);
     }
+
 
 };
 
 function initBoard() {
     let board = document.getElementById("game-board");
 
-    if (enforceTime) {
-        setInterval(timer_wrapper, 1000);
+    setInterval(timer_wrapper, 1000);
 
-    }
 
     for (let i = 0; i < NUMBER_OF_GUESSES; i++) {
         let row = document.createElement("div")
@@ -154,9 +169,7 @@ function checkGuess () {
     }
 
     if (guessString === rightGuessString) {
-        if (enforceTime) {
-            clearInterval(timer_wrapper);
-        }
+        clearInterval(timer_wrapper);
         toastr.success("You guessed right! Game over!")
         guessesRemaining = 0
         return
@@ -166,9 +179,8 @@ function checkGuess () {
         nextLetter = 0;
 
         if (guessesRemaining === 0) {
-            if (enforceTime) {
-                clearInterval(timer_wrapper);
-            }
+            clearInterval(timer_wrapper);
+            
             toastr.error("You've run out of guesses! Game over!")
             toastr.info(`The right word was: "${rightGuessString}"`)
         }
@@ -216,7 +228,7 @@ document.addEventListener("keyup", (e) => {
     var timeElapsed = currentTime-startTime;
     var secondsElapsed = timeElapsed / 1000;
     var secondsRemain = Math.max(0, timeLimit - secondsElapsed);
-    let timesUp = (secondsRemain <= 0) & (enforceTime == true);
+    let timesUp = (secondsRemain <= 0) && (enforceTime == true);
 
     let pressedKey = String(e.key)
 
