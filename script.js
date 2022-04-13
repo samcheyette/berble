@@ -1,4 +1,4 @@
-import { WORDS } from "./words.js";
+import { WORDS, LONG_WORDS } from "./words.js";
 import * as wordleAI from './wordleAI.js';
 
 var remainingWords = WORDS.slice();
@@ -248,7 +248,7 @@ document.addEventListener("keyup", (e) => {
     }
 
     if (pressedKey == "Tab") {
-        let AIGuess = wordleAI.makeGuess(WORDS,remainingWords,
+        let AIGuess = wordleAI.makeGuess(LONG_WORDS,remainingWords,
                     Math.min(2500,WORDS.length),80);
         for (const letter of AIGuess) {
             insertLetter(letter);
