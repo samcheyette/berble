@@ -11,7 +11,7 @@ let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)];
 let startTime = new Date().getTime();
 let timeLimit = 90;
 
-console.log(rightGuessString)
+//console.log(rightGuessString)
 
 
 function timer(minutes, seconds) {
@@ -49,7 +49,7 @@ function timer_wrapper() {
 
 function initBoard() {
     let board = document.getElementById("game-board");
-    setInterval(timer_wrapper, 1000);
+    //setInterval(timer_wrapper, 1000);
 
     for (let i = 0; i < NUMBER_OF_GUESSES; i++) {
         let row = document.createElement("div")
