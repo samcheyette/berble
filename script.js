@@ -252,7 +252,7 @@ document.addEventListener("keyup", (e) => {
 
     if (pressedKey == "Tab") {
         let AIGuess = wordleAI.makeGuess(LONG_WORDS,remainingWords,
-                    Math.min(3000,WORDS.length),90);
+                    Math.min(2000,WORDS.length),90);
         for (const letter of AIGuess) {
             insertLetter(letter);
         }

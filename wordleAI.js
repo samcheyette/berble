@@ -53,12 +53,18 @@ export function getRemainingWords(true_word, words, guess) {
 };
 
 function sampleFrom(arr, n) {
-    let sampleSet = new Set();
-    for (let i=0; i < n; i++) {
-        let index = Math.floor(Math.random()*arr.length);
-        sampleSet.add(arr[index]);
+    if (n > arr.length) {
+        return (arr.slice());
+    } else {
+        let sampleSet = new Set();
+        for (let i=0; i < n; i++) {
+            let index = Math.floor(Math.random()*arr.length);
+            sampleSet.add(arr[index]);
+        }
+        return Array.from(sampleSet);
+
     }
-    return Array.from(sampleSet);
+
 };
 
 
@@ -78,11 +84,11 @@ function getInfoGain(guess, words){
 };
 
 export function makeGuess(allWords, remainingWords, nSubsampleGuesses, nSubsampleWords) {
-    if (remainingWords.length <= 3) {
+    if (remainingWords.length <= 2) {
         return (remainingWords[0]);
     } else {
 
-        let sampleGuesses1 = sampleFrom(remainingWords, 25);
+        let sampleGuesses1 = sampleFrom(remainingWords, 100);
         let sampleGuesses2 = sampleFrom(allWords, nSubsampleGuesses);
         let sampleGuesses = sampleGuesses1.concat(sampleGuesses2);
 
