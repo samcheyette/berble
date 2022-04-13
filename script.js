@@ -58,7 +58,9 @@ function timer_wrapper() {
 
         }
     } else {
-        clock(secondsElapsed);
+        var minutes = Math.floor(secondsElapsed / 60);
+        var seconds = Math.floor(secondsElapsed % 60);
+        clock(minutes, seconds);
     }
 
 
