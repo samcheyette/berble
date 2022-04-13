@@ -33,6 +33,7 @@ function timer(minutes, seconds) {
 
 
 function clock(minutes, seconds) {
+    console.log(minutes, seconds);
 
         if (seconds < 10) {
             document.getElementById("timer").innerHTML = minutes + ":0" + seconds;
