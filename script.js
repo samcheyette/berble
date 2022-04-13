@@ -135,7 +135,7 @@ function checkGuess () {
         return
     }
 
-    if (!WORDS.includes(guessString)) {
+    if (!LONG_WORDS.includes(guessString)) {
         toastr.error("Word not in list!")
         return
     }
