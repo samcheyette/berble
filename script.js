@@ -11,7 +11,7 @@ let currentGuess = [];
 let nextLetter = 0;
 let rightGuessString = WORDS[Math.floor(Math.random() * WORDS.length)];
 let startTime = new Date().getTime();
-let timeLimit = 120;
+let timeLimit = 1200;
 let enforceTime = false;
 var gameOver = false;
 //console.log(rightGuessString)
@@ -252,7 +252,7 @@ document.addEventListener("keyup", (e) => {
 
     if (pressedKey == "Tab") {
         let AIGuess = wordleAI.makeGuess(LONG_WORDS,remainingWords,
-                    Math.min(2000,WORDS.length),90);
+                    Math.min(2000,WORDS.length),80);
         for (const letter of AIGuess) {
             insertLetter(letter);
         }

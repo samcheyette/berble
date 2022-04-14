@@ -68,9 +68,6 @@ function sampleFrom(arr, n) {
 };
 
 
-
-
-
 function getInfoGain(guess, words){
     var pRemain = 0.;
     for (const word of words) {
